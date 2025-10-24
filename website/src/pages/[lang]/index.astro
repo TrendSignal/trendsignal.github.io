@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const readmeEntries = await getCollection('readme');
+
+  return readmeEntries
+    .filter(entry => entry.data.lang !== 'en')
+    .map(entry => ({
+      params: { lang: entry.data.lang },
+      props: { entry }
+    }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await entry.render();
+const frontmatter = entry.data;
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <Content />
+</BaseLayout>

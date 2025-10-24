@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const readmeEntries = await getCollection('readme');
+const langEntry = readmeEntries.find(entry => entry.data.lang === 'LANG');
+
+if (!langEntry) {
+  return Astro.redirect('/');
+}
+
+const { Content, data: frontmatter } = langEntry;
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <Content />
+</BaseLayout>

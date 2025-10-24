@@ -20,20 +20,7 @@ But high-traffic sites? Their sitemaps are early indicators. When they add new p
 
 ## **How It Works**
 
-```mermaid
-graph TD
-    A[High-Traffic Site A] -->|Daily Sitemap Scan| D[TrendSignal]
-    B[High-Traffic Site B] -->|Daily Sitemap Scan| D
-    C[High-Traffic Site C] -->|Daily Sitemap Scan| D
-    D -->|Extract Changes| E[New URLs Added]
-    E -->|Detect Patterns| F{Multiple Sites<br/>Same Topic?}
-    F -->|Yes| G[🎯 Early Signal]
-    F -->|No| H[Keep Monitoring]
-    G --> I[You Build Fast<br/>Before Competition]
-    
-    style G fill:#90EE90
-    style I fill:#FFD700
-```
+![How It Works](assets/how-it-works.svg)
 
 **What you get:**
 

@@ -1,0 +1,23 @@
+---
+// Root page with client-side language detection
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Get all README entries for client-side language detection
+const readmeEntries = await getCollection('readme');
+const supportedLanguages = readmeEntries.map(entry => entry.data.lang);
+
+// Get English version as default
+const englishEntry = readmeEntries.find(entry => entry.data.lang === 'en');
+
+if (!englishEntry) {
+  return new Response('English content not found', { status: 404 });
+}
+
+const { Content } = await englishEntry.render();
+const frontmatter = englishEntry.data;
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <Content />
+</BaseLayout>
